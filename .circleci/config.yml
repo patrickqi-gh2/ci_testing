@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  say-hello:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run:
+          name: Run color script (return_blue)
+          command: ./color.sh
+      - run:
+          name: Run test script (expects blue)
+          command: ./test_color.sh
+
+workflows:
+  build_and_test_flow:
+    jobs:
+      - say-hello
